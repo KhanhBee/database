@@ -9,7 +9,8 @@ public class Database {
         System.out.println("Welcome.");
 
         while (true) {
-            System.out.println("Please choose an option: [n]ew account, [d]isplay balance, [q]uit:");
+            // More options
+            System.out.println("Please choose an option: [n]ew account, [d]isplay balance, [a]dd money, [r]emove money, [q]uit:");
             String option = scanner.next();
 
             if (option.equals("n")) {
@@ -33,6 +34,30 @@ public class Database {
             else if (option.equals("q")) {
                 System.out.println("Thank you.");
                 break;
+            }
+            // Adding money feature
+            else if (option.equals("a")) {
+                System.out.println("Please enter the name to update the balance:");
+                String name = scanner.next();
+                if (database.containsKey(name)) {
+                    System.out.println("Please enter how much money to add:");
+                    double balance = database.get(name);
+                    double add = scanner.nextDouble();
+                    database.put(name, balance + add);
+                    System.out.println("Balance for \"" + name + "\" is now $" + String.format("%.2f", balance + add));
+                }
+            }
+            // Removing money feature
+            else if (option.equals("r")) {
+                System.out.println("Please enter the name to update the balance:");
+                String name = scanner.next();
+                if (database.containsKey(name)) {
+                    System.out.println("Please enter how much money to remove:");
+                    double balance = database.get(name);
+                    double remove = scanner.nextDouble();
+                    database.put(name, balance - remove);
+                    System.out.println("Balance for \"" + name + "\" is now $" + String.format("%.2f", balance - remove));
+                }
             }
             else {
                 System.out.println("Invalid option.");
